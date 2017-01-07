@@ -5,18 +5,20 @@
 
 #include "PrimitivesDrawingTools.h"
 
+const int WINDOWS_WIDTH = 640 * 2;
+const int WINDOWS_HEIGHT = 800;
+
 int main()
 {
 	GLFWwindow* window;
 	if (!glfwInit())
 		exit(EXIT_FAILURE);
-	window = glfwCreateWindow(640, 480, "Chapter 1: Simple"
-		"GLFW Example", NULL, NULL);
-		if (!window)
-		{
-			glfwTerminate();
-			exit(EXIT_FAILURE);
-		}
+	window = glfwCreateWindow(WINDOWS_WIDTH, WINDOWS_HEIGHT, "OpenGL_learning", NULL, NULL);
+	if (!window)
+	{
+		glfwTerminate();
+		exit(EXIT_FAILURE);
+	}
 	glfwMakeContextCurrent(window);
 
 	glEnable(GL_POINT_SMOOTH);
@@ -53,9 +55,20 @@ int main()
 		glEnd();*/
 
 		Vertex v = { current_x_pos, 0.0f, 0.0f, 0.5f, 1.0f, 1.0f, 1.0f };
-		drawingTools::drawPoint(v, 60.0f);
+		//drawingTools::drawPoint(v, 60.0f);
+
+		//Vertex v1 = { 0.0f, 0.0f, 0.0f, 0.5f, 1.0f, 1.0f, 1.0f };
+		//Vertex v2 = { -1.0f, -1.0f, 0.0f, 0.5f, 1.0f, 1.0f, 1.0f };
+		//drawingTools::drawLineSegment(v1, v2, 2.0f);
+
+		drawingTools::drawGrid(5.0f, 1.0f, 0.1f);
+
+		Vertex v1 = { 0.0f, 0.8f, 0.0f, 1.0f, 0.0f, 0.0f, 0.6f };
+		Vertex v2 = { -1.0f, -0.8f, 0.0f, 0.0f, 1.0f, 0.0f, 0.6f };
+		Vertex v3 = { 1.0f, -0.8f, 0.0f, 0.0f, 0.0f, 1.0f, 0.6f };
+		drawingTools::drawTriangle(v1, v2, v3);
 		
-		current_x_pos += 0.01;
+		current_x_pos += 0.01f;
 		if (current_x_pos >= 1.0f)
 			current_x_pos = 0.0f;
 		
