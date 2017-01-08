@@ -155,11 +155,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\common\PrimitivesDrawingTools.cpp" />
+    <ClCompile Include="Demonstrations.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\PrimitivesDrawingTools.h" />
     <ClInclude Include="..\common\Vertex.h" />
+    <ClInclude Include="Demonstrations.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

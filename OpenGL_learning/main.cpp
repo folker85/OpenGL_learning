@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #include "PrimitivesDrawingTools.h"
+#include "Demonstrations.h"
 
 const int WINDOWS_WIDTH = 640 * 2;
 const int WINDOWS_HEIGHT = 800;
@@ -27,6 +28,8 @@ int main()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	GLfloat current_x_pos = 0.0f;
+
+	float sigma = 0.01f;
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -54,7 +57,7 @@ int main()
 		glVertex3f(0.f, 0.6f, 0.f);
 		glEnd();*/
 
-		Vertex v = { current_x_pos, 0.0f, 0.0f, 0.5f, 1.0f, 1.0f, 1.0f };
+		//Vertex v = { current_x_pos, 0.0f, 0.0f, 0.5f, 1.0f, 1.0f, 1.0f };
 		//drawingTools::drawPoint(v, 60.0f);
 
 		//Vertex v1 = { 0.0f, 0.0f, 0.0f, 0.5f, 1.0f, 1.0f, 1.0f };
@@ -63,14 +66,20 @@ int main()
 
 		drawingTools::drawGrid(5.0f, 1.0f, 0.1f);
 
-		Vertex v1 = { 0.0f, 0.8f, 0.0f, 1.0f, 0.0f, 0.0f, 0.6f };
-		Vertex v2 = { -1.0f, -0.8f, 0.0f, 0.0f, 1.0f, 0.0f, 0.6f };
-		Vertex v3 = { 1.0f, -0.8f, 0.0f, 0.0f, 0.0f, 1.0f, 0.6f };
-		drawingTools::drawTriangle(v1, v2, v3);
+		sigma += 0.01f;
+		if (sigma >= 1.0f)
+			sigma = 0.01f;
+
+		demo::gaussianDemo(sigma);
+
+		//Vertex v1 = { 0.0f, 0.8f, 0.0f, 1.0f, 0.0f, 0.0f, 0.6f };
+		//Vertex v2 = { -1.0f, -0.8f, 0.0f, 0.0f, 1.0f, 0.0f, 0.6f };
+		//Vertex v3 = { 1.0f, -0.8f, 0.0f, 0.0f, 0.0f, 1.0f, 0.6f };
+		//drawingTools::drawTriangle(v1, v2, v3);
 		
-		current_x_pos += 0.01f;
-		if (current_x_pos >= 1.0f)
-			current_x_pos = 0.0f;
+		//current_x_pos += 0.01f;
+		//if (current_x_pos >= 1.0f)
+		//	current_x_pos = 0.0f;
 		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
